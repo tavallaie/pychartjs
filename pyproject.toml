@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pychartjs"
+version = "1.0.0"
+description = "git@github.com:tavallaie/pychartjs.git"
+authors = ["Ali Tavallaie <a.tavallaie@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+trunco = "^0.2.1"
+
+
+[tool.poetry.group.dev.dependencies]
+robyn = "^0.58.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
