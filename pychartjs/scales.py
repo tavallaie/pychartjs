@@ -45,6 +45,9 @@ class LinearScale(Scale):
     max: Optional[int] = None
     stepSize: Optional[int] = None
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, scale_type=ScaleType.LINEAR, **kwargs)
+
     def to_dict(self) -> Dict:
         data = super().to_dict()
         data.update(
@@ -62,6 +65,9 @@ class LinearScale(Scale):
 class LogarithmicScale(Scale):
     min: Optional[int] = None
     max: Optional[int] = None
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, scale_type=ScaleType.LOGARITHMIC, **kwargs)
 
     def to_dict(self) -> Dict:
         data = super().to_dict()
@@ -81,6 +87,9 @@ class TimeScale(Scale):
     unit: Optional[str] = None
     stepSize: Optional[int] = None
     displayFormats: Optional[Dict] = None
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, scale_type=ScaleType.TIME, **kwargs)
 
     def to_dict(self) -> Dict:
         data = super().to_dict()
