@@ -59,8 +59,9 @@ class Animation:
     def to_dict(self) -> Dict:
         animation_dict = {
             "duration": self.duration,
-            "easing": self.easing.value,
         }
+        if self.easing:
+            animation_dict["easing"] = self.easing.value
         if self.onComplete:
             animation_dict["onComplete"] = self.onComplete
         if self.onProgress:
