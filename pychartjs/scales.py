@@ -23,7 +23,7 @@ class GridLines:
 
 @dataclass
 class Scale:
-    scale_type: ScaleType
+    scale_type: ScaleType = field(init=False)
     display: Optional[bool] = True
     position: Optional[Position] = Position.LEFT
     gridLines: Optional[GridLines] = field(default_factory=GridLines)
@@ -45,8 +45,8 @@ class LinearScale(Scale):
     max: Optional[int] = None
     stepSize: Optional[int] = None
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, scale_type=ScaleType.LINEAR, **kwargs)
+    def __post_init__(self):
+        self.scale_type = ScaleType.LINEAR
 
     def to_dict(self) -> Dict:
         data = super().to_dict()
@@ -66,8 +66,8 @@ class LogarithmicScale(Scale):
     min: Optional[int] = None
     max: Optional[int] = None
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, scale_type=ScaleType.LOGARITHMIC, **kwargs)
+    def __post_init__(self):
+        self.scale_type = ScaleType.LOGARITHMIC
 
     def to_dict(self) -> Dict:
         data = super().to_dict()
@@ -88,8 +88,8 @@ class TimeScale(Scale):
     stepSize: Optional[int] = None
     displayFormats: Optional[Dict] = None
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, scale_type=ScaleType.TIME, **kwargs)
+    def __post_init__(self):
+        self.scale_type = ScaleType.TIME
 
     def to_dict(self) -> Dict:
         data = super().to_dict()
