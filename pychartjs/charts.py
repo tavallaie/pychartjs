@@ -14,7 +14,7 @@ class Chart(Component):
     datasets: List[Dataset] = field(default_factory=list)
     options: Optional[ChartOptions] = field(default_factory=ChartOptions)
     labels: List[str] = field(default_factory=list)
-    scales: List[Scale] = field(default_factory=list)
+    scales: Dict[str, Scale] = field(default_factory=dict)
     plugins: List[Plugin] = field(default_factory=list)
 
     def render(self, context: Optional[Dict] = None) -> str:
@@ -54,7 +54,7 @@ class Chart(Component):
             "options": self.options.to_dict(),
             "plugins": [plugin.to_dict() for plugin in self.plugins],
             "scales": {
-                scale.scale_type.value: scale.to_dict() for scale in self.scales
+                scale_id: scale.to_dict() for scale_id, scale in self.scales.items()
             },
         }
 

@@ -6,7 +6,6 @@ from pychartjs.enums import ScaleType, Position
 class TestScales(unittest.TestCase):
     def test_linear_scale(self):
         scale = LinearScale(
-            scale_type=ScaleType.LINEAR,
             display=True,
             position=Position.LEFT,
             gridLines=GridLines(color="rgba(0, 0, 0, 0.1)", lineWidth=1),
@@ -23,7 +22,7 @@ class TestScales(unittest.TestCase):
         self.assertTrue(scale_dict["beginAtZero"])
 
     def test_logarithmic_scale(self):
-        scale = LogarithmicScale(scale_type=ScaleType.LOGARITHMIC, min=1, max=1000)
+        scale = LogarithmicScale(min=1, max=1000)
         scale_dict = scale.to_dict()
         self.assertEqual(scale_dict["type"], "logarithmic")
         self.assertEqual(scale_dict["min"], 1)
@@ -31,7 +30,6 @@ class TestScales(unittest.TestCase):
 
     def test_time_scale(self):
         scale = TimeScale(
-            scale_type=ScaleType.TIME,
             time_format="%Y-%m-%d",
             tooltipFormat="ll",
             unit="month",
